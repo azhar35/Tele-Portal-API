@@ -3,6 +3,7 @@ package com.example.demo.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.beans.User;
@@ -13,6 +14,9 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepo;
 	
+	public User create(User user) {
+		return userRepo.save(user);
+	}
 	public User findById(int id) {
 		User returnUser;
 		returnUser = userRepo.findById(id).isPresent() ? userRepo.findById(id).get() : new User();
@@ -23,4 +27,11 @@ public class UserService {
 		return userRepo.findAll();
 	}
 	
+	public HttpStatus update(User user, Integer id) {
+		if (userRepo.findById(id).isPresent() && user.getId() == id) {
+			userRepo.save(user);
+			return HttpStatus.NO_CONTENT;
+		}
+		return HttpStatus.BAD_REQUEST;
+	}
 }

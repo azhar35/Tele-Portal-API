@@ -13,7 +13,7 @@ public class DeviceService {
 	@Autowired
 	private DeviceRepository deviceRepo;
 
-	public Device save(Device device) {
+	public Device create(Device device) {
 		return deviceRepo.save(device);
 	}
 

@@ -23,8 +23,7 @@ public class Device {
 	private int id;
 	
 	@Column(name = "phone_number", unique = true)
-	// ^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$
-	// @Pattern(regexp = "^[0-9]{10}$")
+	//@Pattern(regexp = "^[0-9]{10}$")
 	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
 	private int phoneNumber;
 	
