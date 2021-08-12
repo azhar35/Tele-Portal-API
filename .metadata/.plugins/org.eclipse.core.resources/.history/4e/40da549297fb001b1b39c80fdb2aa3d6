@@ -47,4 +47,7 @@ public class DeviceService {
 		}
 		return HttpStatus.BAD_REQUEST;
 	}
+	
+	
+
 }

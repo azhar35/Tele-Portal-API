@@ -1,0 +1,27 @@
+package com.example.demo.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.beans.User;
+import com.example.demo.beans.UserPlan;
+import com.example.demo.data.UserPlanRepository;
+import com.example.demo.data.UserRepository;
+
+@Service
+public class UserPlanService {
+	
+	@Autowired
+	private UserPlanRepository userPlanRepo;
+	
+	public UserPlan create(UserPlan userPlan) {
+		return userPlanRepo.save(userPlan);
+	}
+	
+	public UserPlan findById(int id) {
+		UserPlan returnUser;
+		returnUser = userRepo.findById(id).isPresent() ? userRepo.findById(id).get() : new User();
+		return returnUser;
+	}
+
+}

@@ -28,7 +28,7 @@ public class User {
 	private String password;
 	
 	@OneToMany(mappedBy = "user")
-	private Set<UserPlan> userPlans;
+	private Set<UserPlan> userPlan;
 
 	
 
@@ -59,11 +59,11 @@ public class User {
 	}
 
 	public Set<UserPlan> getUserPlan() {
-		return userPlans;
+		return userPlan;
 	}
 
 	public void setUserPlan(Set<UserPlan> userPlan) {
-		this.userPlans = userPlan;
+		this.userPlan = userPlan;
 	}
 	
 	//Constructor(s)
