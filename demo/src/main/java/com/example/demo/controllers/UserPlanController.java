@@ -21,7 +21,7 @@ import com.example.demo.services.UserPlanService;
 @RestController
 @RequestMapping("/userplans")
 @CrossOrigin("*")
-public class UserPlanControllers {
+public class UserPlanController {
 	@Autowired
 	private UserPlanService userPlanService;
 	
