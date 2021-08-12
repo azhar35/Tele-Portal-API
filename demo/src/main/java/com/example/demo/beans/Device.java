@@ -31,7 +31,7 @@ public class Device {
 	@NotNull
 	private String deviceName;
 	
-	@JsonManagedReference
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "device_userplan_id")
 	private UserPlan userPlan;
@@ -64,12 +64,12 @@ public class Device {
 		this.deviceName = device_name;
 	}
 
-	public UserPlan getUserplan() {
+	public UserPlan getUserPlan() {
 		return userPlan;
 	}
 
-	public void setUserplan(UserPlan userplan) {
-		this.userPlan = userplan;
+	public void setUserPlan(UserPlan userPlan) {
+		this.userPlan = userPlan;
 	}
 
 	

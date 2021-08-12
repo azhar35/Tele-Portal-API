@@ -62,12 +62,12 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<UserPlan> getUserPlan() {
+	public Set<UserPlan> getUserPlans() {
 		return userPlans;
 	}
 
-	public void setUserPlan(Set<UserPlan> userPlan) {
-		this.userPlans = userPlan;
+	public void setUserPlan(Set<UserPlan> userPlans) {
+		this.userPlans = userPlans;
 	}
 	
 	//Constructor(s)
