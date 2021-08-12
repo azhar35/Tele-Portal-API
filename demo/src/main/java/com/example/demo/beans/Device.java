@@ -23,9 +23,9 @@ public class Device {
 	private int id;
 	
 	@Column(name = "phone_number", unique = true)
-	//@Pattern(regexp = "^[0-9]{10}$")
-	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
-	private int phoneNumber;
+	// @Pattern(regexp = "^[0-9]{10}$")
+	// @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
+	private long phoneNumber;
 	
 	@Column(name = "device_name")
 	@NotNull
@@ -48,7 +48,7 @@ public class Device {
 		this.id = id;
 	}
 
-	public int getPhone_number() {
+	public long getPhone_number() {
 		return phoneNumber;
 	}
 

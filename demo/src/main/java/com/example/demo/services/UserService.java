@@ -29,9 +29,20 @@ public class UserService {
 	
 	public HttpStatus update(User user, Integer id) {
 		if (userRepo.findById(id).isPresent() && user.getId() == id) {
+			// I am here!
+			user.setId(id);
 			userRepo.save(user);
 			return HttpStatus.NO_CONTENT;
 		}
 		return HttpStatus.BAD_REQUEST;
 	}
+	
+	public HttpStatus delete(int id) {
+		if (userRepo.findById(id).isPresent()) {
+			userRepo.deleteById(id);
+			return HttpStatus.OK;
+		}
+		return HttpStatus.BAD_REQUEST;
+	}
+	
 }
