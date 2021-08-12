@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class UserPlan {
@@ -24,17 +23,17 @@ public class UserPlan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userplan_id")
 	private int id;
-
+	
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "userplan_user_id", referencedColumnName = "user_id")
 	private User user;
-
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "userplan_plan_id", referencedColumnName = "plan_id")
 	private Plan plan;
 	
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "userPlan", cascade = CascadeType.ALL)
 	private Set<Device> devices;
 

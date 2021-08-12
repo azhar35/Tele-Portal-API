@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Plan {
@@ -30,7 +30,7 @@ public class Plan {
 	@NotNull
 	private double price;
 	
-	@JsonBackReference
+	@JsonManagedReference
 	@OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
 	private Set<UserPlan> userPlans;
 	

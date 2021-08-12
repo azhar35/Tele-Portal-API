@@ -12,6 +12,7 @@ import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Device {
@@ -30,7 +31,7 @@ public class Device {
 	@NotNull
 	private String deviceName;
 	
-	@JsonBackReference
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "device_userplan_id")
 	private UserPlan userPlan;
