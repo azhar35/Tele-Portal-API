@@ -37,13 +37,5 @@ public class PlanService {
 		}
 		return HttpStatus.BAD_REQUEST;
 	}
-	
-	public HttpStatus delete(int id) {
-		if (planRepo.findById(id).isPresent()) {
-			planRepo.deleteById(id);
-			return HttpStatus.OK;
-		}
-		return HttpStatus.BAD_REQUEST;
-	}
 
 }

@@ -46,6 +46,7 @@ public class UserController {
 	
 	@PutMapping("/user/{id}")
 	public ResponseEntity<Void> updateUser(@RequestBody User user,@PathVariable("id") Integer id) {
+		System.out.println("@PutMapping is being called");
 		return new ResponseEntity<>(userService.update(user, id));
 	}
 	

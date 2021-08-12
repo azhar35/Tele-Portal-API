@@ -31,12 +31,6 @@ public class DeviceController {
 		return ResponseEntity.ok(deviceService.findAll());
 	}
 	
-	@GetMapping("/device/{id}")
-	public ResponseEntity<Device> findUserById(@PathVariable("id") Integer id) {
-		Device body = deviceService.findById(id);
-		return new ResponseEntity<>(body,HttpStatus.OK);	
-	}
-	
 	@PostMapping(value = "/device")
 	public ResponseEntity<Device> create(@RequestBody Device device) {
 		Device body = deviceService.create(device);

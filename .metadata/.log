@@ -1906,3 +1906,144 @@ java.lang.InterruptedException
 
 !ENTRY Activator 1 0 2021-08-12 11:23:46.041
 !MESSAGE Has main method computation for project 'demo'
+
+!ENTRY org.eclipse.ui 2 2 2021-08-12 11:29:03.895
+!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+
+!ENTRY Activator 1 0 2021-08-12 11:52:17.383
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 11:52:18.094
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 11:54:21.612
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 11:54:22.206
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:03:41.100
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:03:41.695
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:04:04.417
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:04:05.181
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:06:37.709
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:06:38.303
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY org.eclipse.lsp4e 2 0 2021-08-12 12:08:34.229
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:385)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2092)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY Activator 1 0 2021-08-12 12:08:48.734
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:08:49.358
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:09:44.106
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:09:44.755
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:10:29.810
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:10:30.422
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:19:42.269
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:19:42.920
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:23:25.515
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:23:26.191
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:23:32.230
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:23:32.837
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:26:03.758
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:26:04.372
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:26:30.353
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 12:26:30.963
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:28:49.705
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:28:50.364
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:30:22.835
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:30:23.482
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:31:19.822
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:31:20.463
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:33:10.542
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:33:11.156
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:34:50.920
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:34:51.551
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:35:47.382
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:35:48.034
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:39:14.377
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:39:15.034
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:40:07.337
+!MESSAGE Has main method computation for project 'demo'
+
+!ENTRY Activator 1 0 2021-08-12 13:40:07.948
+!MESSAGE Has main method computation for project 'demo'

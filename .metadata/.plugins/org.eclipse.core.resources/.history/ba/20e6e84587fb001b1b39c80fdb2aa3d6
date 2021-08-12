@@ -25,12 +25,6 @@ public class DeviceService {
 		return deviceRepo.findAll();
 	}
 	
-	public Device findById(int id) {
-		Device returnUser;
-		returnUser = deviceRepo.findById(id).isPresent() ? deviceRepo.findById(id).get() : new Device();
-		return returnUser;
-	}
-	
 	public HttpStatus delete(Integer id) {
 		if (deviceRepo.findById(id).isPresent()) {
 			deviceRepo.deleteById(id);
@@ -41,7 +35,6 @@ public class DeviceService {
 	
 	public HttpStatus update(Device device, Integer id) {
 		if (deviceRepo.findById(id).isPresent() && device.getId() == id) {
-			device.setId(id);
 			deviceRepo.save(device);
 			return HttpStatus.NO_CONTENT;
 		}

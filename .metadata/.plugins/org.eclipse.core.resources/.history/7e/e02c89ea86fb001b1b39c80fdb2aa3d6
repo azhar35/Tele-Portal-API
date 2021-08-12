@@ -66,6 +66,8 @@ public class User {
 		this.userPlan = userPlan;
 	}
 	
+	
+	
 	//Constructor(s)
 	
 	public User() {

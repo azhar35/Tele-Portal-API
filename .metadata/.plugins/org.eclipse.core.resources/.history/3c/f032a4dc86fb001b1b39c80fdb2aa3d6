@@ -1,13 +1,10 @@
 package com.example.demo.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,17 +22,6 @@ import com.example.demo.services.DeviceService;
 public class DeviceController {
 	@Autowired
 	private DeviceService deviceService;
-	
-	@GetMapping()	
-	public ResponseEntity<List<Device>> findAll(){
-		return ResponseEntity.ok(deviceService.findAll());
-	}
-	
-	@GetMapping("/device/{id}")
-	public ResponseEntity<Device> findUserById(@PathVariable("id") Integer id) {
-		Device body = deviceService.findById(id);
-		return new ResponseEntity<>(body,HttpStatus.OK);	
-	}
 	
 	@PostMapping(value = "/device")
 	public ResponseEntity<Device> create(@RequestBody Device device) {
