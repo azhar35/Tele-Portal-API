@@ -2,6 +2,7 @@ package com.example.demo.beans;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class UserPlan {
@@ -23,7 +25,7 @@ public class UserPlan {
 	@Column(name = "userplan_id")
 	private int id;
 
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "userplan_user_id", referencedColumnName = "user_id")
 	private User user;
@@ -31,8 +33,9 @@ public class UserPlan {
 	@ManyToOne
 	@JoinColumn(name = "userplan_plan_id", referencedColumnName = "plan_id")
 	private Plan plan;
-
-	@OneToMany(mappedBy = "userPlan")
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "userPlan", cascade = CascadeType.ALL)
 	private Set<Device> devices;
 
 	

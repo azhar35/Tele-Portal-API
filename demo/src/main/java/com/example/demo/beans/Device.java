@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -23,15 +24,13 @@ public class Device {
 	private int id;
 	
 	@Column(name = "phone_number", unique = true)
-	// @Pattern(regexp = "^[0-9]{10}$")
-	// @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
-	private long phoneNumber;
+	private String phoneNumber;
 	
 	@Column(name = "device_name")
 	@NotNull
 	private String deviceName;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "device_userplan_id")
 	private UserPlan userPlan;
@@ -48,11 +47,11 @@ public class Device {
 		this.id = id;
 	}
 
-	public long getPhone_number() {
+	public String getPhone_number() {
 		return phoneNumber;
 	}
 
-	public void setPhone_number(int phone_number) {
+	public void setPhone_number(String phone_number) {
 		this.phoneNumber = phone_number;
 	}
 
