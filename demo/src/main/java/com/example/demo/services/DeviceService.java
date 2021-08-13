@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,25 +8,32 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.beans.Device;
+import com.example.demo.beans.User;
 import com.example.demo.beans.UserPlan;
 import com.example.demo.data.DeviceRepository;
+import com.example.demo.data.UserRepository;
+import com.example.demo.exceptions.InvalidUserException;
+import com.example.demo.exceptions.PlanFullException;
 
 @Service
 public class DeviceService {
 	@Autowired
 	private DeviceRepository deviceRepo;
 	@Autowired
+	private UserRepository userRepo;
+	@Autowired
 	private UserPlanService userPlanService;
+	@Autowired
+	private UserService userService;
 
-	public Device create(Device device) {
+	public Device create(Device device) throws PlanFullException {
 		int upId = device.getUserPlan().getId();
 		UserPlan up = userPlanService.findById(upId);
-		if(up.getDevices().size() < up.getPlan().getMax_devices()) {
-			
+		if (up.getDevices().size() < up.getPlan().getMax_devices()) {
+
 			return deviceRepo.save(device);
 		}
-		
-		return new Device();
+		throw new PlanFullException();
 	}
 
 	// might be custom to find all devices associated with the user
@@ -48,12 +56,31 @@ public class DeviceService {
 		return HttpStatus.BAD_REQUEST;
 	}
 
-	public HttpStatus update(Device device, Integer id) {
+	public HttpStatus update(Device device, Integer id) throws PlanFullException {
 		if (deviceRepo.findById(id).isPresent() && device.getId() == id) {
-			device.setId(id);
-			deviceRepo.save(device);
-			return HttpStatus.NO_CONTENT;
+			if(device.getUserPlan() == null) { 
+				return HttpStatus.BAD_REQUEST; //if request body doesn't contain UserPlan object
+			}
+			int upId = device.getUserPlan().getId();
+			UserPlan up = userPlanService.findById(upId);
+			if (up.getDevices().size() <= up.getPlan().getMax_devices()) { //same check as create, but with <=
+				deviceRepo.save(device);
+				return HttpStatus.NO_CONTENT;
+			}
 		}
 		return HttpStatus.BAD_REQUEST;
+	}
+	public List<Device> findDevicesByUserId(int id) throws InvalidUserException{
+		List<Device> usrDevices = new ArrayList<>();
+		if (userRepo.findById(id).isPresent()) {
+			for(UserPlan u : userService.findById(id).getUserPlans()) {
+				usrDevices.addAll(u.getDevices());
+			}
+
+		}
+		else {
+			throw new InvalidUserException();
+		}
+		return usrDevices;
 	}
 }

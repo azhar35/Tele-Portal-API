@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.beans.Device;
 import com.example.demo.beans.User;
+import com.example.demo.exceptions.InvalidUserException;
+import com.example.demo.exceptions.PlanFullException;
 import com.example.demo.services.DeviceService;
 
 @RestController
@@ -38,7 +40,7 @@ public class DeviceController {
 	}
 	
 	@PostMapping(value = "/device")
-	public ResponseEntity<Device> create(@RequestBody Device device) {
+	public ResponseEntity<Device> create(@RequestBody Device device) throws PlanFullException {
 		Device body = deviceService.create(device);
 		return new ResponseEntity<>(body, HttpStatus.CREATED);
 	}
@@ -49,7 +51,14 @@ public class DeviceController {
 	}
 	
 	@PutMapping("/device/{id}")
-	public ResponseEntity<Void> updateDevice(@RequestBody Device device, @PathVariable Integer id ) {
+	public ResponseEntity<Void> updateDevice(@RequestBody Device device, @PathVariable Integer id ) throws PlanFullException {
 		return new ResponseEntity<>(deviceService.update(device, id));
+	}
+	
+	@GetMapping("/user/{id}")
+	public ResponseEntity<List<Device>> findDevicesByUser(@PathVariable("id") Integer id) throws InvalidUserException {
+		List<Device> body = deviceService.findDevicesByUserId(id);
+		return new ResponseEntity<>(body, HttpStatus.OK);
+		
 	}
 }
