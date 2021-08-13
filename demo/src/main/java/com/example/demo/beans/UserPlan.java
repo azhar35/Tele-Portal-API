@@ -17,31 +17,29 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class UserPlan {
-	
-	//Fields
-	
+
+	// Fields
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userplan_id")
 	private int id;
-	
+
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "userplan_user_id", referencedColumnName = "user_id")
 	private User user;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "userplan_plan_id", referencedColumnName = "plan_id")
 	private Plan plan;
-	
+
 	@JsonManagedReference
 	@OneToMany(mappedBy = "userPlan", cascade = CascadeType.ALL)
 	private Set<Device> devices;
 
-	
-	
-	//Getters & Setters
-	
+	// Getters & Setters
+
 	public int getId() {
 		return id;
 	}
@@ -74,10 +72,8 @@ public class UserPlan {
 		this.devices = devices;
 	}
 
-	
-	
-	//Constructor(s)
-	
+	// Constructor(s)
+
 	public UserPlan() {
 		super();
 	}

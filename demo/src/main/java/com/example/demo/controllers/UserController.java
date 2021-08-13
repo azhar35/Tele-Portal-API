@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.beans.User;
+import com.example.demo.exceptions.InvalidDeviceException;
 import com.example.demo.exceptions.InvalidUserException;
 import com.example.demo.services.UserService;
 
@@ -53,5 +54,10 @@ public class UserController {
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable("id") Integer id) {
 		return new ResponseEntity<>(userService.delete(id));	
+	}
+	
+	@GetMapping("/user/device/{id}")
+	public ResponseEntity<User> findUserByDeviceId(@PathVariable("id") Integer id) throws InvalidDeviceException {
+		return new ResponseEntity<>(userService.findUserByDeviceId(id), HttpStatus.OK);
 	}
 } 

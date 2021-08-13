@@ -4,6 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class InvalidUserPlanException extends Exception {
+public class InvalidDeviceException extends Exception {
 
 }

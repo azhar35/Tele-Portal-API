@@ -28,38 +28,40 @@ import com.example.demo.services.DeviceService;
 public class DeviceController {
 	@Autowired
 	private DeviceService deviceService;
-	
-	@GetMapping()	
-	public ResponseEntity<List<Device>> findAll(){
+
+	@GetMapping()
+	public ResponseEntity<List<Device>> findAll() {
 		return ResponseEntity.ok(deviceService.findAll());
 	}
-	
+
 	@GetMapping("/device/{id}")
 	public ResponseEntity<Device> findUserById(@PathVariable("id") Integer id) {
 		Device body = deviceService.findById(id);
-		return new ResponseEntity<>(body,HttpStatus.OK);	
+		return new ResponseEntity<>(body, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = "/device")
-	public ResponseEntity<Device> create(@RequestBody Device device) throws PlanFullException, InvalidUserPlanException {
+	public ResponseEntity<Device> create(@RequestBody Device device)
+			throws PlanFullException, InvalidUserPlanException {
 		Device body = deviceService.create(device);
 		return new ResponseEntity<>(body, HttpStatus.CREATED);
 	}
-	
+
 	@DeleteMapping("/device/{id}")
 	public ResponseEntity<User> deleteDevice(@PathVariable("id") Integer id) {
-		return new ResponseEntity<>(deviceService.delete(id));	
+		return new ResponseEntity<>(deviceService.delete(id));
 	}
-	
+
 	@PutMapping("/device/{id}")
-	public ResponseEntity<Void> updateDevice(@RequestBody Device device, @PathVariable Integer id ) throws PlanFullException {
+	public ResponseEntity<Void> updateDevice(@RequestBody Device device, @PathVariable Integer id)
+			throws PlanFullException {
 		return new ResponseEntity<>(deviceService.update(device, id));
 	}
-	
+
 	@GetMapping("/user/{id}")
 	public ResponseEntity<List<Device>> findDevicesByUser(@PathVariable("id") Integer id) throws InvalidUserException {
 		List<Device> body = deviceService.findDevicesByUserId(id);
 		return new ResponseEntity<>(body, HttpStatus.OK);
-		
+
 	}
 }

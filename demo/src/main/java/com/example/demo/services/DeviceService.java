@@ -11,6 +11,7 @@ import com.example.demo.beans.Device;
 import com.example.demo.beans.User;
 import com.example.demo.beans.UserPlan;
 import com.example.demo.data.DeviceRepository;
+import com.example.demo.data.UserPlanRepository;
 import com.example.demo.data.UserRepository;
 import com.example.demo.exceptions.InvalidUserException;
 import com.example.demo.exceptions.InvalidUserPlanException;
@@ -23,12 +24,14 @@ public class DeviceService {
 	@Autowired
 	private UserRepository userRepo;
 	@Autowired
+	private UserPlanRepository userPlanRepo;
+	@Autowired
 	private UserPlanService userPlanService;
 	@Autowired
 	private UserService userService;
 
 	public Device create(Device device) throws PlanFullException, InvalidUserPlanException {
-		if(device.getUserPlan() == null) {
+		if (device.getUserPlan() == null || !userPlanRepo.findById(device.getUserPlan().getId()).isPresent()) {
 			throw new InvalidUserPlanException();
 		}
 		int upId = device.getUserPlan().getId();
@@ -62,27 +65,27 @@ public class DeviceService {
 
 	public HttpStatus update(Device device, Integer id) throws PlanFullException {
 		if (deviceRepo.findById(id).isPresent() && device.getId() == id) {
-			if(device.getUserPlan() == null) { 
-				return HttpStatus.BAD_REQUEST; //if request body doesn't contain UserPlan object
+			if (device.getUserPlan() == null) {
+				return HttpStatus.BAD_REQUEST; // if request body doesn't contain UserPlan object
 			}
 			int upId = device.getUserPlan().getId();
 			UserPlan up = userPlanService.findById(upId);
-			if (up.getDevices().size() <= up.getPlan().getMax_devices()) { //same check as create, but with <=
+			if (up.getDevices().size() <= up.getPlan().getMax_devices()) { // same check as create, but with <=
 				deviceRepo.save(device);
 				return HttpStatus.NO_CONTENT;
 			}
 		}
 		return HttpStatus.BAD_REQUEST;
 	}
-	public List<Device> findDevicesByUserId(int id) throws InvalidUserException{
+
+	public List<Device> findDevicesByUserId(int id) throws InvalidUserException {
 		List<Device> usrDevices = new ArrayList<>();
 		if (userRepo.findById(id).isPresent()) {
-			for(UserPlan u : userService.findById(id).getUserPlans()) {
+			for (UserPlan u : userService.findById(id).getUserPlans()) {
 				usrDevices.addAll(u.getDevices());
 			}
 
-		}
-		else {
+		} else {
 			throw new InvalidUserException();
 		}
 		return usrDevices;

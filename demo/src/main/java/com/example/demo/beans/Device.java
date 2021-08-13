@@ -16,30 +16,28 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Device {
-	
-	//Fields
-	
+
+	// Fields
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "device_id")
 	private int id;
-	
+
 	@Column(name = "phone_number", unique = true)
 	private String phoneNumber;
-	
+
 	@Column(name = "device_name")
 	@NotNull
 	private String deviceName;
-	
+
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "device_userplan_id")
 	private UserPlan userPlan;
 
-	
-	
-	//Getters & Setters
-	
+	// Getters & Setters
+
 	public int getId() {
 		return id;
 	}
@@ -72,10 +70,8 @@ public class Device {
 		this.userPlan = userPlan;
 	}
 
-	
-	
-	//Constructor(s)
-	
+	// Constructor(s)
+
 	public Device() {
 		super();
 	}

@@ -25,31 +25,31 @@ import com.example.demo.services.PlanService;
 public class PlanController {
 	@Autowired
 	private PlanService planService;
-	
-	@GetMapping()	
-	public ResponseEntity<List<Plan>> findAll(){
+
+	@GetMapping()
+	public ResponseEntity<List<Plan>> findAll() {
 		return ResponseEntity.ok(planService.findAll());
 	}
-	
+
 	@PostMapping(value = "/plan")
 	public ResponseEntity<Plan> createPlan(@RequestBody Plan plan) {
 		Plan body = planService.create(plan);
 		return new ResponseEntity<>(body, HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping("/plan/{id}")
 	public ResponseEntity<Plan> findUserById(@PathVariable("id") Integer id) {
 		Plan body = planService.findById(id);
-		return new ResponseEntity<>(body,HttpStatus.OK);
+		return new ResponseEntity<>(body, HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/plan/{id}")
-	public ResponseEntity<Void> updatePlan(@RequestBody Plan plan,@PathVariable("id") Integer id) {
+	public ResponseEntity<Void> updatePlan(@RequestBody Plan plan, @PathVariable("id") Integer id) {
 		return new ResponseEntity<>(planService.update(plan, id));
 	}
-	
+
 	@DeleteMapping("/plan/{id}")
 	public ResponseEntity<User> deletePlan(@PathVariable("id") Integer id) {
-		return new ResponseEntity<>(planService.delete(id));	
+		return new ResponseEntity<>(planService.delete(id));
 	}
 }

@@ -7,13 +7,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.beans.User;
+import com.example.demo.data.DeviceRepository;
 import com.example.demo.data.UserRepository;
+import com.example.demo.exceptions.InvalidDeviceException;
 import com.example.demo.exceptions.InvalidUserException;
 
 @Service
 public class UserService {
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private DeviceRepository deviceRepo;
 
 	public User create(User user) throws InvalidUserException {
 		if (user.getUsername() != null && user.getPassword() != null) {
@@ -50,6 +54,14 @@ public class UserService {
 			return HttpStatus.OK;
 		}
 		return HttpStatus.BAD_REQUEST;
+	}
+
+	public User findUserByDeviceId(int id) throws InvalidDeviceException {
+		if (deviceRepo.findById(id).isPresent()) {
+			return deviceRepo.findById(id).get().getUserPlan().getUser();
+		}
+		throw new InvalidDeviceException();
+
 	}
 
 }

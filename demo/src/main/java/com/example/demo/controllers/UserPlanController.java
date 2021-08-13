@@ -25,31 +25,31 @@ import com.example.demo.services.UserPlanService;
 public class UserPlanController {
 	@Autowired
 	private UserPlanService userPlanService;
-	
-	@GetMapping()	
-	public ResponseEntity<List<UserPlan>> findAll(){
+
+	@GetMapping()
+	public ResponseEntity<List<UserPlan>> findAll() {
 		return ResponseEntity.ok(userPlanService.findAll());
 	}
-	
+
 	@GetMapping("/userplan/{id}")
 	public ResponseEntity<UserPlan> findUserPlanById(@PathVariable("id") Integer id) {
 		UserPlan body = userPlanService.findById(id);
-		return new ResponseEntity<>(body,HttpStatus.OK);
+		return new ResponseEntity<>(body, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = "/userplan")
 	public ResponseEntity<UserPlan> createUserPlan(@RequestBody UserPlan userPlan) throws InvalidUserPlanException {
 		UserPlan body = userPlanService.create(userPlan);
 		return new ResponseEntity<>(body, HttpStatus.CREATED);
 	}
-	
+
 	@PutMapping("/userplan/{id}")
-	public ResponseEntity<Void> updateUserPlan(@RequestBody UserPlan userPlan,@PathVariable("id") Integer id) {
+	public ResponseEntity<Void> updateUserPlan(@RequestBody UserPlan userPlan, @PathVariable("id") Integer id) {
 		return new ResponseEntity<>(userPlanService.update(userPlan, id));
 	}
-	
+
 	@DeleteMapping("/userplan/{id}")
 	public ResponseEntity<UserPlan> deleteUserPlan(@PathVariable("id") Integer id) {
-		return new ResponseEntity<>(userPlanService.delete(id));	
+		return new ResponseEntity<>(userPlanService.delete(id));
 	}
 }

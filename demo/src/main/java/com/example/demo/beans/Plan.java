@@ -12,30 +12,30 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Plan {
-	
-	//Fields
-	
+
+	// Fields
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "plan_id")
 	private int id;
-	
+
 	@Column(name = "max_devices")
 	@NotNull
 	private int maxDevices;
-	
+
 	@NotNull
 	private double price;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
 	private Set<UserPlan> userPlans;
-	
-	
-	//Getters & Setters
-	
+
+	// Getters & Setters
+
 	public int getId() {
 		return id;
 	}
@@ -59,9 +59,9 @@ public class Plan {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	//Constructor(s)
-	
+
+	// Constructor(s)
+
 	public Plan() {
 		super();
 	}
