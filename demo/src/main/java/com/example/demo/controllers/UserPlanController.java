@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.beans.UserPlan;
+import com.example.demo.exceptions.InvalidUserPlanException;
 import com.example.demo.services.UserPlanService;
 
 @RestController
@@ -37,7 +38,7 @@ public class UserPlanController {
 	}
 	
 	@PostMapping(value = "/userplan")
-	public ResponseEntity<UserPlan> createUserPlan(@RequestBody UserPlan userPlan) {
+	public ResponseEntity<UserPlan> createUserPlan(@RequestBody UserPlan userPlan) throws InvalidUserPlanException {
 		UserPlan body = userPlanService.create(userPlan);
 		return new ResponseEntity<>(body, HttpStatus.CREATED);
 	}

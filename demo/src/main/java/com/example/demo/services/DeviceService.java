@@ -13,6 +13,7 @@ import com.example.demo.beans.UserPlan;
 import com.example.demo.data.DeviceRepository;
 import com.example.demo.data.UserRepository;
 import com.example.demo.exceptions.InvalidUserException;
+import com.example.demo.exceptions.InvalidUserPlanException;
 import com.example.demo.exceptions.PlanFullException;
 
 @Service
@@ -26,7 +27,10 @@ public class DeviceService {
 	@Autowired
 	private UserService userService;
 
-	public Device create(Device device) throws PlanFullException {
+	public Device create(Device device) throws PlanFullException, InvalidUserPlanException {
+		if(device.getUserPlan() == null) {
+			throw new InvalidUserPlanException();
+		}
 		int upId = device.getUserPlan().getId();
 		UserPlan up = userPlanService.findById(upId);
 		if (up.getDevices().size() < up.getPlan().getMax_devices()) {

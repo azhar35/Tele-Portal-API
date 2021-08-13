@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.beans.User;
+import com.example.demo.exceptions.InvalidUserException;
 import com.example.demo.services.UserService;
 
 @RestController
@@ -32,13 +33,13 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/user")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<User> createUser(@RequestBody User user) throws InvalidUserException {
 		User body = userService.create(user);
 		return new ResponseEntity<>(body, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/user/{id}")
-	public ResponseEntity<User> findUserById(@PathVariable("id") Integer id) {
+	public ResponseEntity<User> findUserById(@PathVariable("id") Integer id) throws InvalidUserException {
 		User body = userService.findById(id);
 		return new ResponseEntity<>(body,HttpStatus.OK);
 		

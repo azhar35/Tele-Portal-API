@@ -7,16 +7,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.beans.UserPlan;
+import com.example.demo.data.PlanRepository;
 import com.example.demo.data.UserPlanRepository;
+import com.example.demo.data.UserRepository;
+import com.example.demo.exceptions.InvalidUserPlanException;
 
 @Service
 public class UserPlanService {
 	
 	@Autowired
 	private UserPlanRepository userPlanRepo;
-	
-	public UserPlan create(UserPlan userPlan) {
-		return userPlanRepo.save(userPlan);
+	@Autowired
+	private PlanRepository planRepo;
+	@Autowired
+	private UserRepository userRepo;
+
+	public UserPlan create(UserPlan userPlan) throws InvalidUserPlanException {
+		if(userPlan.getUser() != null && userPlan.getPlan() != null) {
+			if(userPlan.getUser().getId() > 0 && userPlan.getPlan().getId() > 0) {
+				if(userRepo.findById(userPlan.getUser().getId()).isPresent() && planRepo.findById(userPlan.getPlan().getId()).isPresent()) {
+					return userPlanRepo.save(userPlan);
+				}
+			}
+		}
+		throw new InvalidUserPlanException();
+		
 	}
 	
 	public UserPlan findById(int id) {
