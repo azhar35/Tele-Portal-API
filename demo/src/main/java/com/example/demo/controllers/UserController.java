@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.beans.User;
@@ -26,38 +27,44 @@ import com.example.demo.services.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+
 	// to display all users in the database
-	@GetMapping()	
-	public ResponseEntity<List<User>> findAll(){
+	@GetMapping()
+	public ResponseEntity<List<User>> findAll() {
 		return ResponseEntity.ok(userService.findAll());
 	}
-	
+
 	@PostMapping(value = "/user")
 	public ResponseEntity<User> createUser(@RequestBody User user) throws InvalidUserException {
 		User body = userService.create(user);
 		return new ResponseEntity<>(body, HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping("/user/{id}")
 	public ResponseEntity<User> findUserById(@PathVariable("id") Integer id) throws InvalidUserException {
 		User body = userService.findById(id);
-		return new ResponseEntity<>(body,HttpStatus.OK);
-		
+		return new ResponseEntity<>(body, HttpStatus.OK);
+
 	}
-	
+
 	@PutMapping("/user/{id}")
-	public ResponseEntity<Void> updateUser(@RequestBody User user,@PathVariable("id") Integer id) {
+	public ResponseEntity<Void> updateUser(@RequestBody User user, @PathVariable("id") Integer id) {
 		return new ResponseEntity<>(userService.update(user, id));
 	}
-	
+
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable("id") Integer id) {
-		return new ResponseEntity<>(userService.delete(id));	
+		return new ResponseEntity<>(userService.delete(id));
 	}
-	
+
 	@GetMapping("/user/device/{id}")
 	public ResponseEntity<User> findUserByDeviceId(@PathVariable("id") Integer id) throws InvalidDeviceException {
 		return new ResponseEntity<>(userService.findUserByDeviceId(id), HttpStatus.OK);
 	}
-} 
+
+	@GetMapping("/user")
+	public ResponseEntity<User> findUserByUsername(@RequestParam String name) throws InvalidUserException {
+		return new ResponseEntity<>(userService.findByUsername(name), HttpStatus.OK);
+	}
+
+}

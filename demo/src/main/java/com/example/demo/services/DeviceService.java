@@ -8,13 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.beans.Device;
-import com.example.demo.beans.User;
 import com.example.demo.beans.UserPlan;
 import com.example.demo.data.DeviceRepository;
-import com.example.demo.data.UserPlanRepository;
 import com.example.demo.data.UserRepository;
+import com.example.demo.exceptions.InvalidDeviceException;
 import com.example.demo.exceptions.InvalidUserException;
-import com.example.demo.exceptions.InvalidUserPlanException;
 import com.example.demo.exceptions.PlanFullException;
 
 @Service
@@ -24,26 +22,24 @@ public class DeviceService {
 	@Autowired
 	private UserRepository userRepo;
 	@Autowired
-	private UserPlanRepository userPlanRepo;
-	@Autowired
 	private UserPlanService userPlanService;
 	@Autowired
 	private UserService userService;
 
-	public Device create(Device device) throws PlanFullException, InvalidUserPlanException {
-		if (device.getUserPlan() == null || !userPlanRepo.findById(device.getUserPlan().getId()).isPresent()) {
-			throw new InvalidUserPlanException();
-		}
-		int upId = device.getUserPlan().getId();
-		UserPlan up = userPlanService.findById(upId);
-		if (up.getDevices().size() < up.getPlan().getMax_devices()) {
+	public Device create(Device device) throws InvalidDeviceException, PlanFullException {
 
-			return deviceRepo.save(device);
+		try {
+			int upId = device.getUserPlan().getId();
+			UserPlan up = userPlanService.findById(upId);
+			if (!up.isPlanFull()) {
+				return deviceRepo.save(device);
+			} else {
+				throw new PlanFullException();
+			}
+		} catch (Exception e) {
+			throw new InvalidDeviceException();
 		}
-		throw new PlanFullException();
 	}
-
-	// might be custom to find all devices associated with the user
 
 	public List<Device> findAll() {
 		return deviceRepo.findAll();
@@ -63,18 +59,21 @@ public class DeviceService {
 		return HttpStatus.BAD_REQUEST;
 	}
 
-	public HttpStatus update(Device device, Integer id) throws PlanFullException {
+	public HttpStatus update(Device device, Integer id) throws PlanFullException, InvalidDeviceException {
 		if (deviceRepo.findById(id).isPresent() && device.getId() == id) {
-			if (device.getUserPlan() == null) {
-				return HttpStatus.BAD_REQUEST; // if request body doesn't contain UserPlan object
+			try {
+				int userPlanId1 = device.getUserPlan().getId();
+				int userPlanId2 = findById(id).getUserPlan().getId();
+				if(userPlanId1 == userPlanId2) {
+					deviceRepo.save(device);
+					return HttpStatus.OK;
+				}
+				create(device);
+			}catch(Exception e) {
+				throw new InvalidDeviceException();
 			}
-			int upId = device.getUserPlan().getId();
-			UserPlan up = userPlanService.findById(upId);
-			if (up.getDevices().size() <= up.getPlan().getMax_devices()) { // same check as create, but with <=
-				deviceRepo.save(device);
-				return HttpStatus.NO_CONTENT;
-			}
-		}
+			return HttpStatus.OK;
+	}
 		return HttpStatus.BAD_REQUEST;
 	}
 
@@ -90,4 +89,5 @@ public class DeviceService {
 		}
 		return usrDevices;
 	}
+	
 }

@@ -20,10 +20,11 @@ public class UserService {
 	private DeviceRepository deviceRepo;
 
 	public User create(User user) throws InvalidUserException {
-		if (user.getUsername() != null && user.getPassword() != null) {
+		try {
 			return userRepo.save(user);
+		} catch (Exception e) {
+			throw new InvalidUserException();
 		}
-		throw new InvalidUserException();
 	}
 
 	public User findById(int id) throws InvalidUserException {
@@ -39,11 +40,12 @@ public class UserService {
 
 	public HttpStatus update(User user, Integer id) {
 		if (userRepo.findById(id).isPresent() && user.getId() == id) {
-			if (user.getUsername() != null && user.getPassword() != null) {
+			try {
 				userRepo.save(user);
 				return HttpStatus.NO_CONTENT;
+			} catch (Exception e) {
+				return HttpStatus.BAD_REQUEST;
 			}
-
 		}
 		return HttpStatus.BAD_REQUEST;
 	}
@@ -62,6 +64,10 @@ public class UserService {
 		}
 		throw new InvalidDeviceException();
 
+	}
+
+	public User findByUsername(String username) {
+		return userRepo.findByUsernameEquals(username);
 	}
 
 }

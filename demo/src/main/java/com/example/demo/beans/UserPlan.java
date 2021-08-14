@@ -77,5 +77,12 @@ public class UserPlan {
 	public UserPlan() {
 		super();
 	}
-
+	
+	public boolean isPlanFull() {
+		if (this.getPlan().getMax_devices() == this.getDevices().size()) {
+			return true;
+		}
+		return false;
+	}
+	
 }
