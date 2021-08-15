@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
 @CrossOrigin("*")
 public class SecurityController {
-	@GetMapping()
+	@GetMapping("/auth")
 	public String login(){
 		return "authenticated successfully!" ;
 	}
