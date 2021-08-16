@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RestapiService } from '../restapi.service';
 
 @Component({
@@ -9,14 +10,22 @@ import { RestapiService } from '../restapi.service';
 export class HomeComponent implements OnInit {
 
   users:any;
-  constructor(private service:RestapiService) { }
+  user = localStorage.getItem('user');
+
+  constructor(private service:RestapiService, private router: Router) { 
+
+  }
 
   ngOnInit() {
+    if(localStorage.getItem('loggedin') != 'true') {
+      this.router.navigate(["/login"])
+    }
   }
 
   getUsers(){
-let resp=this.service.getUser();
-resp.subscribe(data=>this.users=data);
+    this.service.getAllUsers().subscribe(data => {
+      this.users = data;
+    })
   }
 
 }
