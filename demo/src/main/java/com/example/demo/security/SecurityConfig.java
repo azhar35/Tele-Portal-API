@@ -23,11 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// ADDED
+		 //ADDED
 		http.cors();
-		// Above line
+		 //Above line
 		http.authorizeRequests()
-		.antMatchers("/auth/**").fullyAuthenticated().and().httpBasic();
+		.antMatchers("/auth/**").fullyAuthenticated().and().httpBasic().and().csrf().disable();
 	}
 	
 	@Bean

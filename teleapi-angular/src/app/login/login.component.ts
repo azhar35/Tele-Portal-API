@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import { RegisterComponent } from '../register/register.component';
 import { RestapiService } from '../restapi.service';
 
 @Component({
@@ -13,6 +14,8 @@ export class LoginComponent implements OnInit {
   username!: string;
   password!: string;
   message:any
+  showRegister = false;
+  showLogin = true;
 
   constructor(private service:RestapiService, private router:Router) { }
 
@@ -33,8 +36,13 @@ export class LoginComponent implements OnInit {
       this.username ='';
       this.password ='';
       localStorage.setItem('loggedin', "false");
-      localStorage.setItem('user' , '');
+      localStorage.removeItem('user');
     });
+
+  }
+  doRegister() {
+    this.showLogin = false;
+    this.showRegister = true;
 
   }
 }

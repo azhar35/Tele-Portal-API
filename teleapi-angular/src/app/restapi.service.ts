@@ -23,5 +23,7 @@ public getUser(username: String){
 public getAllUsers() {
   return this.http.get("http://localhost:9001/users");
 }
-
+public register(username:string, password:string) {
+  return this.http.post("http://localhost:9001/users/user", {"username":username, "password":password});
+}
 }
