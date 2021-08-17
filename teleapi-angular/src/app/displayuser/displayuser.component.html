@@ -1,0 +1,17 @@
+<table>
+    <tr><th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+    </tr>
+
+    <!-- *ngFor is a directive : HTML attribute in Angular that used to "direct" Angular-->
+    <!-- "structural directive" that changes the DOM-->
+    <!-- let temp_variable in collection_to_iterate -->
+    <tr *ngFor = "let user of userList" >
+        <!-- {{ expression }} can access data inside the component -->
+        <!-- templating framework -->
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.password }}<td>
+    </tr>
+</table>

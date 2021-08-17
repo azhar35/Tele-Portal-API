@@ -21,13 +21,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('loggedin') == 'true') {
-      this.router.navigate(["/home"])
+    // commenting to test  
+    //  this.router.navigate(["/home"])
     }
   }
 
   doLogin(){
     let resp = this.service.login(this.username, this.password);
     resp.subscribe(data => {
+      // to logout "false"
       localStorage.setItem('loggedin', "true");
       localStorage.setItem('user', this.username);
       this.router.navigate(["/home"])
@@ -40,9 +42,11 @@ export class LoginComponent implements OnInit {
     });
 
   }
+
+  
+
   doRegister() {
     this.showLogin = false;
     this.showRegister = true;
-
   }
 }

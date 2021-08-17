@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { RestapiService } from './restapi.service';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { AddplanComponent } from './addplan/addplan.component';
+import { UpdateplanComponent } from './updateplan/updateplan.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    AddplanComponent,
+    UpdateplanComponent,
   ],
   imports: [
     BrowserModule,
