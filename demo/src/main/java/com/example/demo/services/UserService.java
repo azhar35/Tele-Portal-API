@@ -65,9 +65,9 @@ public class UserService {
 		throw new InvalidDeviceException();
 
 	}
-
+	
 	public User findByUsername(String username) {
 		return userRepo.findByUsername(username);
 	}
-
+	
 }
