@@ -14,38 +14,41 @@ export class HomeComponent implements OnInit {
 
   users:any;
   user1: any;
-  user = localStorage.getItem('user');
 
+  loaded = false;
+ 
   constructor(private service:RestapiService, private router: Router) { 
 
   }
 
-  doLogout() {
-    localStorage.setItem('loggedin', "false");
-    localStorage.removeItem('user');
-    this.router.navigate(["/login"])
-  }
 
   ngOnInit() {
     if(localStorage.getItem('loggedin') != 'true') {
       this.router.navigate(["/login"])
     }
+    this.getCurrentUser();
+    this.loaded = true;
   }
 
+  
   getUsers(){
     this.service.getAllUsers().subscribe(data => {
       this.users = data;
     })
   }
 
+  
 
   // currentUser = JSON.parse(localStorage.getItem('user') || '{}');
 
   public getCurrentUser(){
     if (localStorage.getItem('user') != null){ 
-      this.service.getUser(localStorage.getItem('user')!)
+      this.service.getUser(localStorage.getItem('user')!).subscribe(result =>{
+        this.user1 = result;
+      })
     }else{
-    
+      localStorage.setItem('loggedin', "false");
+      this.router.navigate(["/home"])
     }
   }
   }

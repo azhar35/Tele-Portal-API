@@ -1,32 +1,15 @@
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<div class="sidenav">
-         <div class="login-main-text">
-            <h2>Application<br> Registration Page</h2>
-            <p>Register here.</p>
-         </div>
+<!--Source:  https://getbootstrap.com/docs/4.2/components/navbar/ -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="http://localhost:4200/home">TelePortalAPI</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" [routerLink]="['/view-plan']" href="#">View Plan</a>
+        <a class="nav-item nav-link" [routerLink]="['/add-plan']" href="#">Add Plan</a>
+        <a class="nav-item nav-link" [routerLink]="['/update-plan']" href="#">Update Plan</a>
+        <!-- <div class="text-left"><button type="submit" class="btn btn-black border border-dark" (click) = "doLogout()">Logout</button></div> -->
       </div>
-      <div class="main">
-         <div class="col-md-6 col-sm-12">
-             
-            <div class="login-form">
-                <p>Register</p>
-               <form>
-                  <div class="form-group">
-                     <label>User Name</label>
-                     <input type="text" class="form-control" placeholder="User Name" [(ngModel)]="username" name= "username" id="email">
-                  </div>
-                  <div class="form-group">
-                     <label>Password</label>
-                     <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name=  "password" id="password">
-                  </div>
-                  <button type="submit" class="btn btn-black border border-dark" (click) = "doRegister()">Register</button>
-                  <button type="button" style = "margin-left:10px;"class="btn btn-secondary border border-dark" (click) = "doBack()">Back</button>
-               </form>
-            </div>
-         </div>
-      </div>
+    </div>
+  </nav>

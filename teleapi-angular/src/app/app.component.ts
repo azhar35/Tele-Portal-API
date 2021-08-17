@@ -12,7 +12,6 @@ import { LoginComponent } from './login/login.component';
 
 export class AppComponent {
   title = 'teleapi-angular';
-  user = localStorage.getItem('user');
 
   constructor(private router:Router) { }
   doLogout() {
@@ -21,4 +20,3 @@ export class AppComponent {
     this.router.navigate(["/login"])
   }
 }
-
