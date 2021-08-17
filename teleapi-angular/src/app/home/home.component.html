@@ -1,4 +1,4 @@
-<div style = "text-align: center;"><h1>Welcome {{user}}!</h1></div>
+<!-- <div style = "text-align: center;"><h1>Welcome {{user1.username}}!</h1></div> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,35 +13,34 @@
 </head>
 
 <body>
-
+    <app-navbar></app-navbar>
     <div class="container">
-        <button type="button" class="btn btn-primary" (click)="getUsers()">FindUsers</button>
+        <!--<button type="button" class="btn btn-primary" (click)="getCurrentUser()">FindUsers</button> -->
     </div>
 
     <div class="container">
          <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Username</th>
-                    <th>Password</th>
+                    
                     <th>Userplan</th>
                     <th>Price</th>
                     <th>Devices</th>
-                    <th>Is the plan Full?</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <!-- <th>Is the plan Full?</th> -->
         
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let user of users">
-                    <td>{{user.id}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.password}}</td>
-                    <td>{{user.userPlans[0].plan.max_devices}} devices</td>
-                    <td>${{user.userPlans[0].plan.price}}</td>
-                    <td>{{user.userPlans[0].devices[0].device_name}}, {{user.userPlans[0].devices[1].device_name}}, {{user.userPlans[0].devices[2].device_name}} </td>
-                    <td>{{user.userPlans[0].planFull}}</td>
+            <tbody *ngIf="loaded">
+                <tr *ngFor="let userP of user1.userPlans">
+                    <td>{{userP.plan.max_devices}} devices</td>
+                    <td>${{userP.plan.price}}</td>
+                    <td *ngFor="let device of userP.devices" >{{device.device_name}}, {{device.phone_number}} </td>
+                    <!-- <td>{{userP.planFull}}</td> -->
                 </tr>
+                <tr>Total Cost</tr>
             </tbody>
         </table>
     </div>
