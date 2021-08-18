@@ -38,7 +38,6 @@ export class MainComponent implements OnInit {
     if (localStorage.getItem('user') != null){ 
       this.service.getUser(localStorage.getItem('user')!).subscribe(result  =>{
       this.currentUser = result as User;
-      console.log(result);
         
       })
     }else{

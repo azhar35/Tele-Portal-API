@@ -1,2 +1,27 @@
 <app-navbar></app-navbar>
-<p>mydevices works!</p>
+<div class="container mt-5 col-auto" style='padding:1%;border:solid; background-color: rgb(255, 255, 255)'>
+    <div style="height:400px; overflow:auto;">
+        <table class="table table-hover" id="mainTable" style="text-align:center; vertical-align:middle;font-size:120%">
+            <thead>
+              <tr>
+                <th scope="col">Device Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Plan</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+    
+            <tbody id="tablebody">
+                <tr *ngFor="let device of currentDevices">
+              <td>{{device.device_name}}</td>
+              <td>{{device.phone_number}}</td>
+              <td>hardcoded</td>
+              <td></td>
+                </tr>
+            </tbody>
+    
+          </table>
+    </div>
+
+</div>

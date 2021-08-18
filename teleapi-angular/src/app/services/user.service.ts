@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
+import Device  from '../models/Device';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   currentUser: any;
+  
   constructor(private http:HttpClient, private router: Router) { }
 
   public getUser(username: String){
@@ -38,5 +40,10 @@ export class UserService {
     }
     this.getCurrentUser();
   }
-}
 
+  public getDevices(id : number) {
+    
+    return this.http.get("http://localhost:9001/devices/user/" + id);
+
+}
+}
