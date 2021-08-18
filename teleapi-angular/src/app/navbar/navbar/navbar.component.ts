@@ -25,4 +25,10 @@ export class NavbarComponent implements OnInit {
   doAddPlans() {
     this.router.navigate(["/addplan"]);
   }
+  doMyDevices() {
+    this.router.navigate(["/mydevices"]);
+  }
+  doMyPlans() {
+    this.router.navigate(["/myplans"]);
+  }
 }

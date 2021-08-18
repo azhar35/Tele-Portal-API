@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import User from '../models/User';
-import UserPlan from '../models/UserPlan';
-import { NavbarComponent } from '../navbar/navbar/navbar.component';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-myplans',
+  templateUrl: './myplans.component.html',
+  styleUrls: ['./myplans.component.css']
 })
-export class MainComponent implements OnInit {
+export class MyplansComponent implements OnInit {
+  constructor(private service: UserService, private router: Router) { }
 
-  constructor(private router: Router, private service: UserService, private navbar: NavbarComponent) { }
   currentUsername = localStorage.getItem('user');
   currentUser: any;
   

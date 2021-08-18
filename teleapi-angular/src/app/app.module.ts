@@ -12,6 +12,8 @@ import { MainComponent } from './main/main.component';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
 import { AddplanComponent } from './addplan/addplan.component';
 import { LoginService } from './services/login.service';
+import { MyplansComponent } from './myplans/myplans.component';
+import { MydevicesComponent } from './mydevices/mydevices.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { LoginService } from './services/login.service';
     RegisterformComponent,
     MainComponent,
     NavbarComponent,
-    AddplanComponent
+    AddplanComponent,
+    MyplansComponent,
+    MydevicesComponent
   ],
   imports: [
     BrowserModule,
