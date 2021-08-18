@@ -3,43 +3,15 @@
     <h2 style = "text-align:center;">{{currentUsername}}'s Plans</h2>
 
 
-    <!DOCTYPE html>
-<html>
-<head>
-<style>
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: rgb(67, 72, 80);
-  color: white;
-}
-</style>
-</head>
-<body>
 
 <table id="customers">
-    <thead>
+    <thead >
         <tr>
             <th>Userplan</th>
             <th>Plan Price</th>
             <th>Devices</th>
-            <th>Plan Id</th>
         </tr>
     </thead>
     <tbody>
@@ -52,12 +24,10 @@
                     <td>Phone Number: {{device.phone_number}}</td>
                 </tr>
             </td>
-            <td>{{userP.plan.id}}</td>
         </tr>
     </tbody>
   
 </table>
 
-</body>
-</html>
+
 </div>
