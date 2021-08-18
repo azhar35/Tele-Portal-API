@@ -12,10 +12,15 @@ import { UserService } from '../services/user.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private router: Router, private service: UserService, private navbar: NavbarComponent) { }
+  currentUser : User = new User();
+
+  constructor(private router: Router, private service: UserService) { }
   currentUsername = localStorage.getItem('user');
-  currentUser: any;
   
+
+  
+  cost!: number;
+
 
   ngOnInit(): void {
     if (localStorage.getItem('loggedin') != 'true') {
@@ -25,17 +30,31 @@ export class MainComponent implements OnInit {
     this.getCurrentUser();
     
   }
+  ngDoCheck(){
+    this.cost = this.totalCost();
+  }
 
   public getCurrentUser(){
     if (localStorage.getItem('user') != null){ 
-      this.service.getUser(localStorage.getItem('user')!).subscribe(result =>{
-        this.currentUser = result;
+      this.service.getUser(localStorage.getItem('user')!).subscribe(result  =>{
+      this.currentUser = result as User;
+      console.log(result);
         
       })
     }else{
       localStorage.setItem('loggedin', "false");
       this.router.navigate(["/login"])
     }
+  }
+
+  public totalCost(): number{
+    // console.log(this.currentUser.userPlans[1].plan.price);
+    let cost = 0;
+    for(var up of this.currentUser.userPlans){
+    cost += up.plan.price;
+    console.log("String")
+    }
+    return cost;
   }
 
 }

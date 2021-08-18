@@ -20,14 +20,13 @@ export class MyplansComponent implements OnInit {
       this.router.navigate(["/login"])
     }
     this.getCurrentUser();
-    
   }
 
   public getCurrentUser(){
     if (localStorage.getItem('user') != null){ 
       this.service.getUser(localStorage.getItem('user')!).subscribe(result =>{
         this.currentUser = result;
-        
+        console.log(result)
       })
     }else{
       localStorage.setItem('loggedin', "false");
