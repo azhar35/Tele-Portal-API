@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/teleapi-angular'),
+      dir: require('path').join(__dirname, './coverage/tele-api'),
       subdir: '.',
       reporters: [
         { type: 'html' },

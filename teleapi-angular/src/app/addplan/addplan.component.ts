@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarComponent } from '../navbar/navbar/navbar.component';
 
 @Component({
   selector: 'app-addplan',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./addplan.component.css']
 })
 export class AddplanComponent implements OnInit {
+  val: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+
   }
+
 
 }

@@ -3,35 +3,32 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HttpClientModule} from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { RestapiService } from './restapi.service';
+import { LoginformComponent } from './login/loginform.component';
+import { RegisterformComponent } from './login/registerform.component';
 import { FormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component';
+import { UserService } from './services/user.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MainComponent } from './main/main.component';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
 import { AddplanComponent } from './addplan/addplan.component';
-import { UpdateplanComponent } from './updateplan/updateplan.component';
-
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginformComponent,
+    RegisterformComponent,
+    MainComponent,
     NavbarComponent,
-    LoginComponent,
-    HomeComponent,
-    RegisterComponent,
-    AddplanComponent,
-    UpdateplanComponent,
+    AddplanComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [RestapiService, HttpClient],
+  providers: [UserService,HttpClient, LoginService, LoginformComponent, NavbarComponent, AddplanComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

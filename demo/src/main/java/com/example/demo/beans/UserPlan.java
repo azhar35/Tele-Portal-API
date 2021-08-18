@@ -79,10 +79,7 @@ public class UserPlan {
 	public UserPlan() {
 		super();
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> 3e09596cbf80244ba4674074ea79d4390f4c4297
+
 	@JsonIgnore
 	public boolean isPlanFull() {
 		if (this.getPlan().getMax_devices() == this.getDevices().size()) {

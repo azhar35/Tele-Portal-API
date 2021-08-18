@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'teleapi-angular'`, () => {
+  it(`should have as title 'tele-api'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('teleapi-angular');
+    expect(app.title).toEqual('tele-api');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('teleapi-angular app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('tele-api app is running!');
   });
 });
