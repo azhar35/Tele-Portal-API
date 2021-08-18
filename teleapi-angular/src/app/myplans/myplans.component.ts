@@ -11,6 +11,7 @@ export class MyplansComponent implements OnInit {
   constructor(private service: UserService, private router: Router) { }
 
   currentUsername = localStorage.getItem('user');
+  
   currentUser: any;
   
 
