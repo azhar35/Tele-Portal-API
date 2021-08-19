@@ -2,16 +2,14 @@
 <div class="container mt-5 col-auto" style='padding:1%;border:solid; background-color: rgb(255, 255, 255)'>
     <h2 style = "text-align:center;">{{currentUsername}}'s Plans</h2>
 
-
-
-
-
 <table id="customers">
     <thead >
         <tr>
             <th>Userplan</th>
             <th>Plan Price</th>
             <th>Devices</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -22,8 +20,11 @@
                 <tr *ngFor="let device of userP.devices">
                     <td>Device Name: {{device.device_name}}</td>
                     <td>Phone Number: {{device.phone_number}}</td>
-                </tr>
+                    
             </td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-success" id = "e{{userP.id}}" >Edit</button></td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" >Delete</button></td>
+                
         </tr>
     </tbody>
   

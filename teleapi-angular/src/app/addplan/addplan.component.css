@@ -223,3 +223,7 @@
       width: 300px;
     }
   } 
+
+  a {
+    cursor:pointer !important;
+  }
