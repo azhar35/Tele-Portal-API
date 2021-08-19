@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import User from '../models/User';
+import UserPlan from '../models/UserPlan';
 import { DeviceService } from '../services/device.service';
 import { UserService } from '../services/user.service';
 import { UserplansService } from '../services/userplans.service';
+import { NewdeviceformComponent } from './newdeviceform/newdeviceform.component';
 
 @Component({
   selector: 'app-myplans',
@@ -16,8 +18,8 @@ export class MyplansComponent implements OnInit {
   currentUsername = localStorage.getItem('user');
   
   currentUser = new User();
-  
-
+  showNewDevice = false;
+  up!: UserPlan;
   ngOnInit(): void {
     if (localStorage.getItem('loggedin') != 'true') {
       localStorage.removeItem('user');

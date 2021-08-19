@@ -30,8 +30,12 @@
                   </select>
             </td>
             
-            <td  style = "text-align: center;"><button type="button" class="btn btn-warning" id = "dd{{userP.id}}" (click) = "doDeleteDevice()">Delete Device</button></td>
-            <td  style = "text-align: center;"><button type="button" class="btn btn-success" id = "a{{userP.id}}">Add device</button></td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-warning" id = "dd{{userP.id}}" (click) = "doDeleteDevice()">Delete device</button></td>
+            
+            <td  style = "text-align: center;">
+                <button type="button" class="btn btn-success" id = "a{{userP.id}}" *ngIf = "userP.plan.max_devices > userP.devices.length" (click) = "showNewDevice = !showNewDevice; this.up = userP">Add device</button>
+                <button type="button" class="btn btn-success" id = "f{{userP.id}}" *ngIf = "userP.plan.max_devices <= userP.devices.length" >Add device</button>
+            </td>
             <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" (click) = "doDelete(userP.id)">Remove Plan</button></td>
                 
         </tr>
@@ -40,4 +44,7 @@
 </table>
 
 
+</div>
+<div *ngIf ="showNewDevice" class="container mt-5 col-auto" style='padding:1%;border:solid; background-color: rgb(255, 255, 255)'>
+<app-newdeviceform [up]="up" ></app-newdeviceform>
 </div>
