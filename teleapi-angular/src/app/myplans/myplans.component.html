@@ -1,13 +1,13 @@
 <app-navbar></app-navbar>
 <div class="container mt-5 col-auto" style='padding:1%;border:solid; background-color: rgb(255, 255, 255)'>
-    <h2 style = "text-align:center;">{{currentUsername}}'s Plans</h2>
+    <h2 style = "text-align:center; text-transform: capitalize;">{{currentUsername}}'s Plans</h2>
 
 <table id="customers">
     <thead >
         <tr>
-            <th>Userplan</th>
-            <th>Plan Price</th>
-            <th>Devices</th>
+            <th class="w-25" style = "text-align: center;">Plan</th>
+            <th class="w-25" style = "text-align: center;">Plan Price</th>
+            <th class="w-25" style = "text-align: center;">Devices</th>
             <th></th>
             <th></th>
             <th></th>
@@ -15,8 +15,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let userP of currentUser.userPlans">
-            <td>{{userP.plan.max_devices}}-device Plan</td>
-            <td>${{userP.plan.price}}</td>
+            <td style = "text-align: center; font-size: 21px;">{{userP.plan.max_devices}}-device plan</td>
+            <td style = "text-align: center; font-size: 21px;">${{userP.plan.price}}</td>
             <td >
                 <select *ngIf = "userP.devices.length == 0 "class="form-select" aria-label="Default select example" disabled>
 
@@ -30,13 +30,13 @@
                   </select>
             </td>
             
-            <td  style = "text-align: center;"><button type="button" class="btn btn-warning" id = "dd{{userP.id}}" (click) = "doDeleteDevice(getDeviceSelectorValueByUpId(userP.id))" >Delete device</button></td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-warning btn-sm" id = "dd{{userP.id}}" (click) = "doDeleteDevice(getDeviceSelectorValueByUpId(userP.id))" >Delete device</button></td>
             
             <td  style = "text-align: center;">
-                <button type="button" class="btn btn-success" id = "a{{userP.id}}" *ngIf = "userP.plan.max_devices > userP.devices.length" (click) = "showNewDevice = !showNewDevice; this.up = userP">Add device</button>
-                <button type="button" class="btn btn-warning" id = "f{{userP.id}}" *ngIf = "userP.plan.max_devices <= userP.devices.length" >Plan full!</button>
+                <button type="button" class="btn btn-success btn-sm" id = "a{{userP.id}}" *ngIf = "userP.plan.max_devices > userP.devices.length" (click) = "showNewDevice = !showNewDevice; this.up = userP">Add device</button>
+                <button disabled type="button" class="btn btn-warning btn-sm" id = "f{{userP.id}}" *ngIf = "userP.plan.max_devices <= userP.devices.length" >Plan full!</button>
             </td>
-            <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" (click) = "doDelete(userP.id)">Remove Plan</button></td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-danger btn-sm" id = "d{{userP.id}}" (click) = "doDelete(userP.id)">Remove Plan</button></td>
                 
         </tr>
     </tbody>
