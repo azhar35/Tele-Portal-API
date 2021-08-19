@@ -34,7 +34,7 @@ import { NewdeviceformComponent } from './myplans/newdeviceform/newdeviceform.co
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService,HttpClient, LoginService, LoginformComponent, NavbarComponent, AddplanComponent],
+  providers: [UserService,HttpClient, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

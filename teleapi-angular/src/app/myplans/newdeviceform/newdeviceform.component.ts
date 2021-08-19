@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import Device from 'src/app/models/Device';
 import UserPlan from 'src/app/models/UserPlan';
+import { DeviceService } from 'src/app/services/device.service';
 import { MyplansComponent } from '../myplans.component';
 
 @Component({
@@ -9,9 +11,16 @@ import { MyplansComponent } from '../myplans.component';
 })
 export class NewdeviceformComponent implements OnInit {
   @Input() up!: UserPlan;
-  constructor() { }
+  name!: String;
+  phoneNumber!: String;
+  constructor(private service: DeviceService, private myPlans : MyplansComponent) { }
 
   ngOnInit(): void {
   }
-
+  addNewDevice(name:String, phoneNumber:String) {
+    this.service.addDevice(name,phoneNumber, this.up).subscribe(res => {this.name = ''; this.phoneNumber = ''; this.myPlans.ngOnInit()});
+    name = '';
+    phoneNumber = '';
+    
+  }
 }

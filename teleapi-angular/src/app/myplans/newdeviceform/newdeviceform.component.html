@@ -1,1 +1,14 @@
-<p>{{up.id}}</p>
+<h2 style="text-align:center;">Add a new device</h2>
+
+<div class="d-flex justify-content-center">
+
+    <input type="text" [(ngModel)] = "name" placeholder="Phone Name" id='pName' size="30" style="width:300px; margin:0.3%;"
+    class="border border-dark">
+    <input type="text" [(ngModel)] = "phoneNumber" placeholder="Phone Number" id='pNum' size="30" style="width:300px; margin:0.3%;"
+    class="border border-dark">
+    <button id='addButton' class="btn btn-success border border-dark" style="width:80; margin:0.3%;"
+        (click)="addNewDevice(this.name, this.phoneNumber)">Add</button>
+
+
+
+</div>

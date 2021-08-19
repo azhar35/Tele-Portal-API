@@ -16,7 +16,7 @@ export class MyplansComponent implements OnInit {
   constructor(private service: UserService, private router: Router, private upService: UserplansService, private dService: DeviceService) { }
 
   currentUsername = localStorage.getItem('user');
-  
+  currentSelected!: number;
   currentUser = new User();
   showNewDevice = false;
   up!: UserPlan;
@@ -30,12 +30,15 @@ export class MyplansComponent implements OnInit {
     })
   }
   doDelete(upid : number) {
-    this.upService.removeUserPlan(upid).subscribe(res=> {this.ngOnInit();});
+    this.upService.removeUserPlan(upid).subscribe(res=> {this.ngOnInit()});
     
   }
-   doDeleteDevice() {
-    let select = document.getElementById("deviceSelector") as HTMLOptionElement;
-    let deviceID = Number(select.value);
-    this.dService.deleteDevice(deviceID).subscribe(res=> {this.ngOnInit();});
-   }
+  doDeleteDevice(did: number) {
+    this.dService.deleteDevice(did).subscribe(res=> {this.ngOnInit()});
+  }
+  public getDeviceSelectorValueByUpId(upid: number) {
+    let x = document.getElementById("deviceSelector"+upid) as HTMLOptionElement;
+    return Number(x.value);
+
+  }
 }

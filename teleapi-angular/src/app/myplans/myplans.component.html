@@ -21,7 +21,7 @@
                 <select *ngIf = "userP.devices.length == 0 "class="form-select" aria-label="Default select example" disabled>
 
                     </select>
-                <select id = "deviceSelector" name = "deviceSelector" *ngIf = "userP.devices.length != 0" class="form-select" aria-label="Default select example">
+                <select id = "deviceSelector{{userP.id}}" name = "deviceSelector" *ngIf = "userP.devices.length != 0" class="form-select" aria-label="Default select example">
                     <option selected >Devices</option>
                     <ng-container *ngFor = "let device of userP.devices">
                         <option value="{{device.id}}">{{device.device_name}}</option>
@@ -30,11 +30,11 @@
                   </select>
             </td>
             
-            <td  style = "text-align: center;"><button type="button" class="btn btn-warning" id = "dd{{userP.id}}" (click) = "doDeleteDevice()">Delete device</button></td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-warning" id = "dd{{userP.id}}" (click) = "doDeleteDevice(getDeviceSelectorValueByUpId(userP.id))" >Delete device</button></td>
             
             <td  style = "text-align: center;">
                 <button type="button" class="btn btn-success" id = "a{{userP.id}}" *ngIf = "userP.plan.max_devices > userP.devices.length" (click) = "showNewDevice = !showNewDevice; this.up = userP">Add device</button>
-                <button type="button" class="btn btn-success" id = "f{{userP.id}}" *ngIf = "userP.plan.max_devices <= userP.devices.length" >Add device</button>
+                <button type="button" class="btn btn-warning" id = "f{{userP.id}}" *ngIf = "userP.plan.max_devices <= userP.devices.length" >Plan full!</button>
             </td>
             <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" (click) = "doDelete(userP.id)">Remove Plan</button></td>
                 
