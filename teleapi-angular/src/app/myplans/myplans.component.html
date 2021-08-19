@@ -16,11 +16,17 @@
         <tr *ngFor="let userP of currentUser.userPlans">
             <td>{{userP.plan.max_devices}}-device Plan</td>
             <td>${{userP.plan.price}}</td>
-            <td>
-                <tr *ngFor="let device of userP.devices">
-                    <td>Device Name: {{device.device_name}}</td>
-                    <td>Phone Number: {{device.phone_number}}</td>
+            <td >
+                <select *ngIf = "userP.devices.length == 0 "class="form-select" aria-label="Default select example" disabled>
+
+                    </select>
+                <select *ngIf = "userP.devices.length != 0" class="form-select" aria-label="Default select example">
+                    <option selected >Devices</option>
+                    <ng-container *ngFor = "let device of userP.devices">
+                        <option value="1">{{device.device_name}}</option>
+                    </ng-container>
                     
+                  </select>
             </td>
             <td  style = "text-align: center;"><button type="button" class="btn btn-success" id = "e{{userP.id}}" >Edit</button></td>
             <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" >Delete</button></td>
