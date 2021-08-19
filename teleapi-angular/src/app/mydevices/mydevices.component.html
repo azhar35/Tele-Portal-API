@@ -17,7 +17,7 @@
                     <tr *ngFor="let device of up.devices">
                         <td>{{device.device_name}}</td>
                         <td>{{device.phone_number}}</td>
-                        <td>hardcoded</td>
+                        <td>{{up.plan.max_devices}}-devices plan</td>
                         <td></td>
                           </tr>
                 </ng-container>

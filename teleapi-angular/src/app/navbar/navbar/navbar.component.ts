@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(["/login"]);
   }
   doHome() {
-    this.router.navigate(["/home"]);
+    this.router.navigate(["/main"]);
   }
   doAddPlans() {
     this.router.navigate(["/addplan"]);
