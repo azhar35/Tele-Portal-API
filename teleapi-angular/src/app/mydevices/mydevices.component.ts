@@ -16,7 +16,8 @@ export class MydevicesComponent implements OnInit {
   currentUser: User = new User();
   currentDevices: Array<Device> = [];
   currentUsername = localStorage.getItem('user');
-  
+  showEdit = false;
+  device!: Device
 
   ngOnInit(): void {
     if (localStorage.getItem('loggedin') != 'true') {
@@ -31,6 +32,8 @@ export class MydevicesComponent implements OnInit {
   ngDoCheck() {
 
   }
-
+  doEdit(device: Device) {
+    this.device = device;
+  }
 
 }

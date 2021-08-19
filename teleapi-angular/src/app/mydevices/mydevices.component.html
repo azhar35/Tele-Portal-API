@@ -13,11 +13,11 @@
     
             <tbody id="tablebody">
                 <ng-container *ngFor= "let up of currentUser.userPlans">
-                    <tr *ngFor="let device of up.devices">
+                    <tr *ngFor= "let device of up.devices">
                         <td>{{device.device_name}}</td>
                         <td>{{device.phone_number}}</td>
                         <td>{{up.plan.max_devices}}-devices plan</td>
-                        <td></td>
+                        <td><button type="button" class="btn btn-success btn-sm border border-dark" (click) = "doEdit(device); showEdit = !showEdit; this.device.userplan = up">Edit device</button></td>
                           </tr>
                 </ng-container>
 
@@ -26,4 +26,7 @@
           </table>
     </div>
 
+</div>
+<div *ngIf = "showEdit">
+  <app-editdeviceform [device] = "device" ></app-editdeviceform>
 </div>
