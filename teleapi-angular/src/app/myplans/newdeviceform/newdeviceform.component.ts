@@ -21,6 +21,6 @@ export class NewdeviceformComponent implements OnInit {
     this.service.addDevice(name,phoneNumber, this.up).subscribe(res => {this.name = ''; this.phoneNumber = ''; this.myPlans.ngOnInit()});
     name = '';
     phoneNumber = '';
-    
+    this.myPlans.showNewDevice = false;
   }
 }
