@@ -28,8 +28,7 @@
                     
                   </select>
             </td>
-            <td  style = "text-align: center;"><button type="button" class="btn btn-success" id = "e{{userP.id}}" >Edit</button></td>
-            <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" >Delete</button></td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" (click) = "doDelete(userP.id)">Delete</button></td>
                 
         </tr>
     </tbody>

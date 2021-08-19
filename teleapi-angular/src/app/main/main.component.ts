@@ -27,23 +27,11 @@ export class MainComponent implements OnInit {
       localStorage.removeItem('user');
       this.router.navigate(["/login"])
     }
-    this.getCurrentUser();
+    this.service.getUser(this.currentUsername!).subscribe(result => {
+      this.currentUser = result as User;
+      this.cost = this.totalCost()
+    })
     
-  }
-  ngDoCheck(){
-    this.cost = this.totalCost();
-  }
-
-  public getCurrentUser(){
-    if (localStorage.getItem('user') != null){ 
-      this.service.getUser(localStorage.getItem('user')!).subscribe(result  =>{
-      this.currentUser = result as User; 
-        
-      })
-    }else{
-      localStorage.setItem('loggedin', "false");
-      this.router.navigate(["/login"])
-    }
   }
 
   public totalCost(): number{

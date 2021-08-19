@@ -11,4 +11,7 @@ export class UserplansService {
   addUserPlan(uid: number, pid: number) {
     return this.http.post("http://localhost:9001/userplans/userplan", {"user": {"id":uid}, "plan": {"id":pid} });
   }
+  removeUserPlan(upid : number) {
+    return this.http.delete("http://localhost:9001/userplans/userplan/" + upid);
+  }
 }

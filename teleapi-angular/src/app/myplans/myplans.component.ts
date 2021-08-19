@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import User from '../models/User';
 import { UserService } from '../services/user.service';
+import { UserplansService } from '../services/userplans.service';
 
 @Component({
   selector: 'app-myplans',
@@ -8,11 +10,11 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./myplans.component.css']
 })
 export class MyplansComponent implements OnInit {
-  constructor(private service: UserService, private router: Router) { }
+  constructor(private service: UserService, private router: Router, private upService: UserplansService) { }
 
   currentUsername = localStorage.getItem('user');
   
-  currentUser: any;
+  currentUser = new User();
   
 
   ngOnInit(): void {
@@ -20,19 +22,11 @@ export class MyplansComponent implements OnInit {
       localStorage.removeItem('user');
       this.router.navigate(["/login"])
     }
-    this.getCurrentUser();
+    this.service.getUser(this.currentUsername!).subscribe(result => {
+      this.currentUser = result as User;
+    })
   }
-
-  public getCurrentUser(){
-    if (localStorage.getItem('user') != null){ 
-      this.service.getUser(localStorage.getItem('user')!).subscribe(result =>{
-        this.currentUser = result;
-        console.log(result)
-      })
-    }else{
-      localStorage.setItem('loggedin', "false");
-      this.router.navigate(["/login"])
-    }
+  doDelete(upid : number) {
+    this.upService.removeUserPlan(upid).subscribe();
   }
-
 }

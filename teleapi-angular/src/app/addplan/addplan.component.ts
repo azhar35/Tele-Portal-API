@@ -23,7 +23,9 @@ export class AddplanComponent implements OnInit {
       localStorage.removeItem('user');
       this.router.navigate(["/login"])
     }
-    this.getCurrentUser();
+    this.service.getUser(this.currentUsername!).subscribe(result => {
+      this.currentUser = result as User;
+    })
     
   }
 

@@ -6,7 +6,6 @@ import Device  from '../models/Device';
   providedIn: 'root'
 })
 export class UserService {
-  currentUser: any;
   
   constructor(private http:HttpClient, private router: Router) { }
 
@@ -21,29 +20,4 @@ export class UserService {
     return this.http.post("http://localhost:9001/users/user", {"username":username, "password":password});
   }
 
-  public getCurrentUser(){
-    if (localStorage.getItem('user') != null){ 
-      this.getUser(localStorage.getItem('user')!).subscribe(result =>{
-        this.currentUser = result;
-        
-      })
-    }else{
-      localStorage.setItem('loggedin', "false");
-      this.router.navigate(["/login"])
-    }
-  }
-
-  public loginVerSet() {
-    if (localStorage.getItem('loggedin') != 'true') {
-      localStorage.clearItem('user');
-      this.router.navigate(["/login"])
-    }
-    this.getCurrentUser();
-  }
-
-  public getDevices(id : number) {
-    
-    return this.http.get("http://localhost:9001/devices/user/" + id);
-
-}
 }

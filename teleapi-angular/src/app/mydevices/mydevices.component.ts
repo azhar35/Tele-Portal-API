@@ -23,7 +23,9 @@ export class MydevicesComponent implements OnInit {
       localStorage.removeItem('user');
       this.router.navigate(["/login"])
     }
-    this.getCurrentUser();
+    this.service.getUser(this.currentUsername!).subscribe(result => {
+      this.currentUser = result as User;
+    })
     
   }
   ngDoCheck() {
@@ -31,22 +33,4 @@ export class MydevicesComponent implements OnInit {
   }
 
 
-  public getCurrentUser(){
-    if (localStorage.getItem('user') != null){ 
-      this.service.getUser(this.currentUsername!).subscribe(result =>{
-        this.currentUser = result as User; 
-      })
-    }else{
-      localStorage.setItem('loggedin', "false");
-      this.router.navigate(["/login"])
-    }
-
-  }
-  public getCurrentDevices() {
-    let devices: Array<Device> = [];
-    for (let up of this.currentUser.userPlans) {
-      devices.concat(up.devices);
-      console.log("passing device")
-    }
-  }
 }
