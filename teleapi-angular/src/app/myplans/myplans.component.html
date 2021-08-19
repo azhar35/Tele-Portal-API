@@ -10,6 +10,7 @@
             <th>Devices</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -20,15 +21,18 @@
                 <select *ngIf = "userP.devices.length == 0 "class="form-select" aria-label="Default select example" disabled>
 
                     </select>
-                <select *ngIf = "userP.devices.length != 0" class="form-select" aria-label="Default select example">
+                <select id = "deviceSelector" name = "deviceSelector" *ngIf = "userP.devices.length != 0" class="form-select" aria-label="Default select example">
                     <option selected >Devices</option>
                     <ng-container *ngFor = "let device of userP.devices">
-                        <option value="1">{{device.device_name}}</option>
+                        <option value="{{device.id}}">{{device.device_name}}</option>
                     </ng-container>
                     
                   </select>
             </td>
-            <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" (click) = "doDelete(userP.id)">Delete</button></td>
+            
+            <td  style = "text-align: center;"><button type="button" class="btn btn-warning" id = "dd{{userP.id}}" (click) = "doDeleteDevice()">Delete Device</button></td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-success" id = "a{{userP.id}}">Add device</button></td>
+            <td  style = "text-align: center;"><button type="button" class="btn btn-danger" id = "d{{userP.id}}" (click) = "doDelete(userP.id)">Remove Plan</button></td>
                 
         </tr>
     </tbody>
