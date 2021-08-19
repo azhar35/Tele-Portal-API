@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
   public getCurrentUser(){
     if (localStorage.getItem('user') != null){ 
       this.service.getUser(localStorage.getItem('user')!).subscribe(result  =>{
-      this.currentUser = result as User;
+      this.currentUser = result as User; 
         
       })
     }else{
@@ -47,7 +47,6 @@ export class MainComponent implements OnInit {
   }
 
   public totalCost(): number{
-    // console.log(this.currentUser.userPlans[1].plan.price);
     let cost = 0;
     for(var up of this.currentUser.userPlans){
     cost += up.plan.price;

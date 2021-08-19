@@ -13,12 +13,15 @@
             </thead>
     
             <tbody id="tablebody">
-                <tr *ngFor="let device of currentDevices">
-              <td>{{device.device_name}}</td>
-              <td>{{device.phone_number}}</td>
-              <td>hardcoded</td>
-              <td></td>
-                </tr>
+                <ng-container *ngFor= "let up of currentUser.userPlans">
+                    <tr *ngFor="let device of up.devices">
+                        <td>{{device.device_name}}</td>
+                        <td>{{device.phone_number}}</td>
+                        <td>hardcoded</td>
+                        <td></td>
+                          </tr>
+                </ng-container>
+
             </tbody>
     
           </table>

@@ -8,7 +8,6 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./loginform.component.css']
 })
 export class LoginformComponent implements OnInit {
-  showLogin = true;
   username: any;
   password: any;
   constructor(private loginService: LoginService, private router: Router) { }
