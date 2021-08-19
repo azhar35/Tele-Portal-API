@@ -41,15 +41,15 @@ export class AddplanComponent implements OnInit {
 
   //! the plan ids are hardcoded, so may need changing depending on configuration
   public addBasic() {
-    this.planService.addUserPlan(this.currentUser.id, 1);
+    this.planService.addUserPlan(this.currentUser.id, 1).subscribe();
     window.alert("Plan added!");
   }
   public addPremium() {
-    this.planService.addUserPlan(this.currentUser.id, 2);
+    this.planService.addUserPlan(this.currentUser.id, 2).subscribe();
     window.alert("Plan added!");
   }
   public addUltimate() {
-    this.planService.addUserPlan(this.currentUser.id, 3);
+    this.planService.addUserPlan(this.currentUser.id, 3).subscribe();
     window.alert("Plan added!");
   }
 }
