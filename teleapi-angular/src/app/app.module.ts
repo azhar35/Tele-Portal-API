@@ -36,7 +36,7 @@ import { EditdeviceformComponent } from './mydevices/editdeviceform/editdevicefo
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService,HttpClient, LoginService],
+  providers: [UserService,HttpClient, LoginService, LoginformComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
