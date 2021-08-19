@@ -27,6 +27,7 @@ export class MyplansComponent implements OnInit {
     })
   }
   doDelete(upid : number) {
-    this.upService.removeUserPlan(upid).subscribe();
+    this.upService.removeUserPlan(upid).subscribe(res=> {this.ngOnInit();});
+    
   }
 }
