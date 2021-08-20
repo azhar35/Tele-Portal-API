@@ -16,7 +16,7 @@ export class NewdeviceformComponent implements OnInit {
   constructor(private service: DeviceService, private myPlans : MyplansComponent) { }
 
   ngOnInit(): void {
-    this.phoneNumber = String(Math.random()).substring(2,12);
+    this.phoneNumber = String(1000000000 + Math.floor(8999999999*Math.random()));
   }
   addNewDevice(name:String, phoneNumber:String) {
     this.service.addDevice(name,phoneNumber, this.up).subscribe(res => {this.name = ''; this.phoneNumber = ''; this.myPlans.ngOnInit()});
