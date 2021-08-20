@@ -6,7 +6,7 @@
     class="border border-dark">
     <input #f2 = "ngModel" name = "f2" minlength = "10" maxlength="10" required  type="text" [(ngModel)] = "phoneNumber" placeholder="Phone Number" id='pNum' size="30" style="width:300px; margin:0.3%;"
     class="border border-dark">
-    <button disabled *ngIf = "f1.errors?.required || f2.errors?.minlength || f2.errors?.required "id='addButton' class="btn btn-success border border-dark" style="width:80; margin:0.3%;"
+    <button disabled *ngIf = "f1.errors?.required || f2.errors?.minlength || f2.errors?.required "id='addButton2' class="btn btn-success border border-dark" style="width:80; margin:0.3%;"
         (click)="addNewDevice(this.name, this.phoneNumber)">Add</button>
     <button *ngIf = "!f1.errors?.required && !f2.errors?.required && !f2.errors?.minlength" id='addButton' class="btn btn-success border border-dark" style="width:80; margin:0.3%;"
         (click)="addNewDevice(this.name, this.phoneNumber)">Add</button>
