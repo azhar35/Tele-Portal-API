@@ -4,14 +4,32 @@
 
     <div class="d-flex justify-content-center">
     
-        <input type="text"  placeholder="Phone Name" id='pName' size="30" style="width:300px; margin:0.3%;"
+        <input #pName = "ngModel" [(ngModel)] = "p1" required name = "pName" type="text"  placeholder="Phone Name" id='pName' size="30" style="width:300px; margin:0.3%;"
         class="border border-dark">
-        <input type="text" placeholder="Phone Number" id='pNum' size="30" style="width:300px; margin:0.3%;"
+        <input #pNum = "ngModel" [(ngModel)] = "p2" required name = "pNum" maxlength = 10 minlength = 10 type="text" placeholder="Phone Number" id='pNum' size="30" style="width:300px; margin:0.3%;"
         class="border border-dark">
-        <button id='addButton' class="btn btn-primary border border-dark" style="width:80; margin:0.3%;"
+
+        <button *ngIf = "!pName.errors?.required && !pNum.errors?.required && !pNum.errors?.minlength " id='addButton' class="btn btn-primary border border-dark" style="width:80; margin:0.3%;"
+        (click) = "doSubmit()">Submit</button>
+
+        <button *ngIf = "pName.errors?.required || pNum.errors?.required || pNum.errors?.minlength " disabled id='addButton' class="btn btn-primary border border-dark" style="width:80; margin:0.3%;"
         (click) = "doSubmit()">Submit</button>
     
     
     </div>
+
+
+    <div *ngIf="pName.invalid && (pName.dirty || pName.touched)" class="alert alert-danger mx-auto" style = " padding:0.2%; width:52%">
+        <div *ngIf="pName.errors?.required" style="text-align: center;" >
+            Name required.
+        </div>
+        </div>
+        <div *ngIf="pNum.invalid && (pNum.dirty || pNum.touched)" class="alert alert-danger mx-auto" style = "padding:0.2%;width:52%;">
+            <div *ngIf="pNum.errors?.minlength || pNum.errors?.required" style="text-align: center;" >
+                Number must be 10 digits.
+            </div>
+            </div>
+
+
 
 </div>

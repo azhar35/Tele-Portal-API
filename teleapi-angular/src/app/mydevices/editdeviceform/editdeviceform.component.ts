@@ -14,6 +14,8 @@ export class EditdeviceformComponent implements OnInit {
   @Input() device!: Device;
   pName !:HTMLInputElement;
   pNum!: HTMLInputElement
+  p1: any;
+  p2: any;
   ngOnInit(): void {
     this.pName = document.getElementById("pName") as HTMLInputElement;
     this.pNum = document.getElementById("pNum") as HTMLInputElement;

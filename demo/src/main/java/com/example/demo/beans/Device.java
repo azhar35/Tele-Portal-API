@@ -23,7 +23,8 @@ public class Device {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "device_id")
 	private int id;
-
+	
+	@Pattern(regexp = "^[0-9]{10}$")
 	@Column(name = "phone_number", unique = true)
 	private String phoneNumber;
 
@@ -45,7 +46,7 @@ public class Device {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public String getPhone_number() {
 		return phoneNumber;
 	}
