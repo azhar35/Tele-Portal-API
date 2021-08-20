@@ -11,10 +11,10 @@
     <button *ngIf = "!f1.errors?.required && !f2.errors?.required && !f2.errors?.minlength" id='addButton' class="btn btn-success border border-dark" style="width:80; margin:0.3%;"
         (click)="addNewDevice(this.name, this.phoneNumber)">Add</button>
 
-
+    
 
 </div>
-
+    <p style = "text-align: center;">Have your own number already? Edit the number form to import your old phone number.</p>
 <div *ngIf="f1.invalid && (f1.dirty || f1.touched)" class="alert alert-danger mx-auto" style = " padding:0.2%; width:52%">
     <div *ngIf="f1.errors?.required" style="text-align: center;" >
         Name required.

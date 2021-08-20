@@ -19,14 +19,14 @@ export class EditdeviceformComponent implements OnInit {
   ngOnInit(): void {
     this.pName = document.getElementById("pName") as HTMLInputElement;
     this.pNum = document.getElementById("pNum") as HTMLInputElement;
-    this.pName.value = this.device.device_name;
-    this.pNum.value = this.device.phone_number;
+    this.p1 = this.device.device_name;
+    this.p2 = this.device.phone_number;
   }
 
   doSubmit() {
     this.mydev.showEdit = !this.mydev.showEdit;
 
-    this.devService.editDevice(this.device.id, this.pName.value, this.pNum.value, this.device.userplan.id).subscribe(res => {this.mydev.ngOnInit()});
+    this.devService.editDevice(this.device.id, this.p1 , this.p2, this.device.userplan.id).subscribe(res => {this.mydev.ngOnInit()});
   }
 
 }
